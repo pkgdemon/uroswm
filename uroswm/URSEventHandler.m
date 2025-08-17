@@ -135,6 +135,24 @@
                 [connection flush];
                 break;
             }
+            case XCB_KEY_PRESS:
+            {
+                //NSLog(@"");
+                xcb_key_press_event_t *keyPressEvent = (xcb_key_press_event_t *) e;
+                //NSLog(@"Key Press Event for window %u", keyPressEvent->event);
+                [connection handleKeyPress:keyPressEvent];
+                [connection flush];
+                break;
+            }
+            case XCB_KEY_RELEASE:
+            {
+                //NSLog(@"");
+                xcb_key_release_event_t *keyReleaseEvent = (xcb_key_release_event_t *) e;
+                //NSLog(@"Key Release Event for window %u", keyReleaseEvent->event);
+                [connection handleKeyRelease:keyReleaseEvent];
+                [connection flush];
+                break;
+            }
             case XCB_BUTTON_PRESS:
             {
                 //NSLog(@"");
